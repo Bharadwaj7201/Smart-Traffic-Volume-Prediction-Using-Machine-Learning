@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Smart Traffic – HTML Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* Minimal self-contained styles for the HTML view */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f7fb;
+      color: #0f172a;
+      padding: 1.5rem;
+    }
+    .app {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+    .sidebar {
+      background: #ffffff;
+      border-radius: 1.2rem;
+      padding: 1.1rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 12px 24px rgba(148, 163, 184, 0.35);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .logo-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #22c55e, #3b82f6);
+    }
+    .logo-text {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .sidebar h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      margin-top: 0.8rem;
+      margin-bottom: 0.4rem;
+    }
+    .field-label {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-bottom: 0.15rem;
+      display: block;
+    }
+    .input, .file-input {
+      width: 100%;
+      padding: 0.4rem 0.5rem;
+      border-radius: 0.55rem;
+      border: 1px solid #cbd5e1;
+      font-size: 0.8rem;
+      margin-bottom: 0.6rem;
+      background: white;
+    }
+    .sidebar-text {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 0.5rem;
+    }
+
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .main-header h1 {
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+    .subtitle {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+    .badge-row {
+      display: flex;
+      gap: 0.3rem;
+    }
+    .badge {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: #e0f2fe;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+    .badge-outline {
+      background: transparent;
+      border-color: #cbd5e1;
+      color: #475569;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .tab {
+      border-radius: 999px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.82rem;
+      border: 1px solid transparent;
+      background: #e5e7eb;
+      color: #4b5563;
+    }
+    .tab.active {
+      background: linear-gradient(to right, #93c5fd, #a78bfa);
+      color: white;
+      border: none;
+      box-shadow: 0 8px 18px rgba(147, 197, 253, 0.5);
+    }
+
+    .section-title {
+      font-size: 1rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .card {
+      background: white;
+      border-radius: 1.1rem;
+      padding: 0.9rem 1rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 12px 24px rgba(148, 163, 184, 0.35);
+    }
+    .kpi-label {
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+    .kpi-value {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
+    .kpi-sub {
+      font-size: 0.78rem;
+      color: #9ca3af;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+    }
+    .pill {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.45rem;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+    .pill-warm {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+    .placeholder {
+      border-radius: 0.9rem;
+      border: 1px dashed #cbd5e1;
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-top: 0.3rem;
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr);
+      gap: 0.8rem;
+    }
+
+    @media (max-width: 960px) {
+      .app {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .kpi-grid, .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .compare-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <span class="logo-dot"></span>
+        <span class="logo-text">Smart Traffic</span>
+      </div>
+
+      <h3>Filters</h3>
+
+      <label class="field-label">Date Range</label>
+      <input type="date" class="input" />
+      <input type="date" class="input" />
+
+      <label class="field-label">State</label>
+      <select class="input">
+        <option>Connecticut</option>
+        <option>Massachusetts</option>
+        <option>New York</option>
+        <option>New Jersey</option>
+      </select>
+
+      <label class="field-label">City</label>
+      <select class="input">
+        <option>All Cities</option>
+        <option>Hartford</option>
+        <option>New Haven</option>
+        <option>Stamford</option>
+        <option>New York City</option>
+      </select>
+
+      <h3>Dataset</h3>
+      <p class="sidebar-text">
+        Upload a CSV to override the default <code>simulated_traffic_data.csv</code>.
+      </p>
+      <input type="file" class="file-input" />
+    </aside>
+
+    <!-- Main -->
+    <main>
+      <header class="main-header">
+        <div>
+          <h1>Advanced Traffic Dashboard</h1>
+          <p class="subtitle">Real-time analytics, maps & ML predictions</p>
+        </div>
+        <div class="badge-row">
+          <span class="badge">RandomForest</span>
+          <span class="badge">PyTorch LSTM</span>
+          <span class="badge badge-outline">HTML Demo</span>
+        </div>
+      </header>
+
+      <nav class="tabs">
+        <button class="tab active">📊 Dashboard</button>
+        <button class="tab">🗺 Maps</button>
+        <button class="tab">🤖 ML Predictions</button>
+        <button class="tab">📁 Upload Data</button>
+      </nav>
+
+      <section>
+        <h2 class="section-title">Traffic Overview – Selected State</h2>
+
+        <div class="kpi-grid">
+          <div class="card">
+            <p class="kpi-label">Average Traffic</p>
+            <p class="kpi-value">1,234</p>
+            <p class="kpi-sub">vehicles per interval</p>
+          </div>
+          <div class="card">
+            <p class="kpi-label">Peak hour</p>
+            <p class="kpi-value">18:00</p>
+            <p class="kpi-sub">highest average load</p>
+          </div>
+          <div class="card">
+            <p class="kpi-label">Maximum Traffic</p>
+            <p class="kpi-value">3,980</p>
+            <p class="kpi-sub">vehicles observed</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header">
+              <h3>Traffic Over Time</h3>
+              <span class="pill">Line Chart</span>
+            </div>
+            <div class="placeholder">Time-series chart placeholder</div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Peak Hour Heatmap</h3>
+              <span class="pill pill-warm">Heatmap</span>
+            </div>
+            <div class="placeholder">Day-of-week × Hour heatmap placeholder</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>Compare Two Cities</h3>
+          </div>
+          <div class="compare-row">
+            <div>
+              <label class="field-label">City 1</label>
+              <select class="input">
+                <option>New York City</option>
+                <option>Hartford</option>
+                <option>New Haven</option>
+              </select>
+
+              <label class="field-label">City 2</label>
+              <select class="input">
+                <option>Hartford</option>
+                <option>New York City</option>
+                <option>New Haven</option>
+              </select>
+            </div>
+            <div class="placeholder">City comparison chart placeholder</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

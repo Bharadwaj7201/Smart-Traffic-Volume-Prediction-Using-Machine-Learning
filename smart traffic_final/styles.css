@@ -1,0 +1,138 @@
+/* ===== Global light theme ===== */
+html, body {
+  background: #f5f7fb;
+}
+
+[data-testid="stAppViewContainer"] {
+  background: linear-gradient(135deg, #eef3fb 0%, #fdfdfd 100%);
+  color: #1e293b;
+}
+
+[data-testid="stHeader"] {
+  background: transparent;
+  color: #1e293b;
+}
+
+/* ===== Sidebar ===== */
+section[data-testid="stSidebar"] {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  border-right: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 4px 0 16px rgba(15, 23, 42, 0.08);
+}
+
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {
+  font-size: 0.9rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+/* ===== Inputs ===== */
+.stDateInput input,
+.stSelectbox div[data-baseweb="select"] input,
+.stTextInput input {
+  background: #ffffff !important;
+  border-radius: 0.5rem;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+.stSelectbox div[data-baseweb="select"] {
+  background: #ffffff !important;
+  border-radius: 0.5rem;
+}
+
+.stSlider > div[data-baseweb="slider"] {
+  color: #2563eb !important;
+}
+
+.stFileUploader label {
+  background: #ffffff;
+  border-radius: 0.8rem;
+  border: 1px dashed #94a3b8;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.8rem;
+  color: #334155;
+}
+
+/* ===== Metrics as soft cards ===== */
+.stMetric {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 1.1rem;
+  padding: 1rem !important;
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  box-shadow: 0 14px 28px rgba(148, 163, 184, 0.35);
+}
+
+.stMetric [data-testid="stMetricValue"] {
+  color: #0f172a;
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+
+.stMetric label {
+  color: #64748b;
+}
+
+/* ===== Tabs ===== */
+.stTabs [role="tablist"] {
+  border-bottom: 1px solid #cbd5e1;
+  padding-bottom: 0.4rem;
+}
+
+.stTabs [role="tab"] {
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  margin-right: 0.4rem;
+  color: #64748b;
+  border: 1px solid transparent;
+}
+
+.stTabs [role="tab"]:hover {
+  background: rgba(203, 213, 225, 0.4);
+}
+
+.stTabs [role="tab"][aria-selected="true"] {
+  background: linear-gradient(to right, #93c5fd, #a78bfa);
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(147, 197, 253, 0.45);
+  border: none;
+}
+
+/* ===== Plotly charts container ===== */
+div.stPlotlyChart {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 1rem;
+  padding: 0.6rem;
+  border: 1px solid rgba(203, 213, 225, 0.9);
+  box-shadow: 0 10px 24px rgba(148, 163, 184, 0.3);
+}
+
+/* ===== Alerts ===== */
+.stAlert.success {
+  border-color: rgba(16, 185, 129, 0.5);
+  background: rgba(16, 185, 129, 0.12);
+  color: #065f46;
+}
+
+.stAlert.info {
+  border-color: rgba(59, 130, 246, 0.5);
+  background: rgba(59, 130, 246, 0.12);
+  color: #1e3a8a;
+}
+
+/* ===== Text ===== */
+h1, h2, h3 {
+  color: #0f172a;
+}
+
+p, label, li {
+  color: #334155;
+}
+
+/* Container width */
+.block-container {
+  max-width: 1200px;
+}
