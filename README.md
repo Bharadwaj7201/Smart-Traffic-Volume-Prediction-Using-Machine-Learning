@@ -5,6 +5,9 @@
 
 An **interactive traffic analytics dashboard** built with **Streamlit**, integrating **data visualization**, **geospatial mapping**, and **machine learning** in one platform.
 
+[![Open Dashboard](https://img.shields.io/badge/Live_Dashboard-Streamlit-brightgreen?style=for-the-badge)](https://mvpfinal-vnj5ddjlifva5g27nuwj6d.streamlit.app/)
+
+
 ---
 
 ## Table of Contents
